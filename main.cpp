@@ -20,6 +20,7 @@ Matrix id(unsigned n) {
 Matrix operator*(const Matrix& a, const Matrix& b) {
     unsigned n = a.size();
     Matrix c = id(n);
+#pragma omp parallel for
     for(unsigned i=0; i<n; ++i) {
         for(unsigned j=0; j<n; ++j) {
             c[i][j] = 0;
