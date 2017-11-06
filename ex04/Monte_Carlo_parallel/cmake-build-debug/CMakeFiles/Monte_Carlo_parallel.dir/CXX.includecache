@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo_parallel/UniformDistribution.h
+chrono
+-
+
+/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo_parallel/main.cpp
+iostream
+-
+random
+-
+iomanip
+-
+UniformDistribution.h
+/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo_parallel/UniformDistribution.h
+main.h
+/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo_parallel/main.h
+
+/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo_parallel/main.h
+
