@@ -1,3 +1,0 @@
-/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/anykey/CLionProjects/uibk_ps_parsys/exercises/ex04/Monte_Carlo/cmake-build-debug/CMakeFiles/Monte_Carlo.dir
