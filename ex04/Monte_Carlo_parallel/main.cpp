@@ -17,6 +17,9 @@ int main(int argc, char** argv) {
     CalculatingPi();
 }
 
+/*
+ * The function of counting the number of points within the circle
+ */
 int InsideCircle(const int numSamples)
 {
     UniformDistribution distribution;
