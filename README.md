@@ -1,2 +1,3 @@
 UIBK Parallel Systems
-Denis Denk
+***
+Denis Denk Rakcheev Artem

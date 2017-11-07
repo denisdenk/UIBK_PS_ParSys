@@ -1,0 +1,78 @@
+Documentation n Queens problem (generalized):
+
+Problem: Given n Queens on an N x N Board, how many placings of Queens exist, such that no Queen can kill any other in one move ?
+
+
+Solution algorithm:
+
+We use a brute force approach, where we will loop through all the configurations of the Queens and determine for each 0ne, whether is is a valid solution or not.
+
+
+Setting up the configurations:
+
+A single configuration can be specified by n tuples (x, y) where x is the column and y the row of the queen (if one imagines the board as a matrix).
+
+Lets consider the possible combinations of columns for n Queens (x_1, .., x_n)
+
+there are N choose n combinations. Here for us the ordering of the x coords. is unimportamt (so (1, 2, 3) = (2, 3, 1)).
+
+We get the unique configurations by requiring that the x coords. are in ascending order.
+
+In the program we create an array where each row corresponds to a possible configuration (config_array).
+
+For a given i the configuration is an array with n entries we get all n entries by the following algorithm:
+
+int index = i;      // (see documentation)
+        int entry = 0;      // ""
+        
+        for (int j=1; j<=n; j++){
+
+            int count = 1;      // ""
+            int test = 0;       // ""
+            while (test==0) {
+
+                int compare = binomialCoeff(N - entry - count, n - j);
+                
+                if (index <= compare){
+    
+                    config_array[i - 1][j - 1] = entry + count;
+                    entry = entry + count;
+                    test = 1;
+                }
+
+                else {
+                    
+                    index = index - compare;
+                    count += 1;
+                
+                }
+            }
+
+        }
+
+
+Now we have all unordered configurations.
+
+
+Looping through configurations:
+
+To get all possible configurations we choose one configuration for the x coords and another one for the y coords (may be the same),
+however for the y coords order matters, so for example (1,3) and (2,2) are different from (1,2) (2,3), so we need to permute the y coords of the chosen configurations to get what we call an ordered configurations
+(this consists of the unordered x configuration and the ordered y configuration).
+
+we loop through all of these and need to find out whether they are valid or not.
+
+
+Validity of a configuration:
+
+Whether a configuration is valid or not can be determined by examining the diagonals and anti-diagonals (again thinking of the board as a matrix).
+we number the diags. and anti-diags. and get a pair for each coordinate tuple (x_i, y_i) -> (d_i, ad_i)
+
+the numbers of the diags. and adiags. (in our numbering) can be obtained by 
+
+diag[q] = yvals[q] - xvals[q] + N;
+anti_diag[q] = yvals[q] + xvals[q] - 1;
+
+then finally we check whether in either diag or anti-diag repeted entries exist. If yes the queens can kill each other along the diag/adiag and the given ordered configuration is not a solution. Otherwise it is a solution.
+
+
