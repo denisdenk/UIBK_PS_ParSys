@@ -1,19 +1,19 @@
 #include <iostream>
-
-using namespace std;
-
-int innerCount = 0; // Counter for points inside a circle
-double x, y;        // Coordinates
-double p;           // Pi
+#include "main.h"
 
 int main(int argc, char** argv) {
 
     // Checking arguments
     if (argc != 2) return EXIT_FAILURE;
-    unsigned n = atoi(argv[1]);
+    n = atoi(argv[1]);
     if (n == 0) return EXIT_FAILURE;
 
     cout <<"\nNumber of samples to use in the estimation: " << n << endl;
+    cout << "Calculated Pi = " << CalculatingPi(n) << endl;
+
+}
+
+double CalculatingPi(int num) {
 
     for(int i = 0; i < n; i++) {
 
@@ -28,7 +28,5 @@ int main(int argc, char** argv) {
     }
 
     // Calculate the number Pi
-    p = (double) 4 * innerCount / n;
-
-    cout << "Calculated Pi = " << p << endl;
+    return p = (double) 4 * innerCount / n;
 }
