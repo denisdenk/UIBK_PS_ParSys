@@ -80,25 +80,25 @@ int main(int argc, char** argv) {
     int nums[numberof], i;
     /* put in random numbers */
     for(i = 0; i < numberof; i++) {
-        nums[i] = rand( ) % 100;
+        nums[i] = rand( ) % numberof;
     }
 
     /* print them */
-    printf("Unsorted numbers: ");
+  /*  printf("Unsorted numbers: ");
     for(i = 0; i < numberof; i++) {
         printf("%d ", nums[i]);
     }
-
+*/
     /* sort them */
     mergeSort(nums, 0, numberof-1);
 
     /* print them again */
-    printf("\nSorted numbers: ");
+/*    printf("\nSorted numbers: ");
     for(i = 0; i < numberof; i++) {
         printf("%d ", nums[i]);
     }
     printf("\n");
-
+*/
     return 0;
 }
 

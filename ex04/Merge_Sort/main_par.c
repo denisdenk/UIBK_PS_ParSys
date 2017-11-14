@@ -56,7 +56,7 @@ void merge(int* array, int start, int end) {
 
 void mergeSort(int* array, int start, int end) {
     if(start < end) {
-        printf("Thread %d is sorting %d through %d\n", omp_get_thread_num(), start, end);
+//        printf("Thread %d is sorting %d through %d\n", omp_get_thread_num(), start, end);
         int middle = (start + end) / 2;
 
         /* sort both halves in parallel */
@@ -94,20 +94,21 @@ int main(int argc, char** argv) {
     }
 
     /* print them */
-    printf("Unsorted numbers: ");
-    for(i = 0; i < numberof; i++) {
-        printf("%d ", nums[i]);
-    }
-
-    /* sort them */
-    mergeSort(nums, 0, numberof-1);
-
-    /* print them again */
-    printf("\nSorted numbers: ");
+/*    printf("Unsorted numbers: ");
     for(i = 0; i < numberof; i++) {
         printf("%d ", nums[i]);
     }
     printf("\n");
+*/
+    /* sort them */
+    mergeSort(nums, 0, numberof-1);
+
+    /* print them again */
+/*    printf("\nSorted numbers: ");
+    for(i = 0; i < numberof; i++) {
+        printf("%d ", nums[i]);
+    }
+*/    printf("\n");
     return 0;
 }
 
