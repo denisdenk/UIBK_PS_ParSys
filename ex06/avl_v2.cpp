@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <omp.h>
 using namespace std;
 
 // search position to insert i in tree based on starting position
@@ -35,6 +36,25 @@ void search_full(unsigned i, int *position, int *direction, map<int, unsigned> &
     }
 
 
+}
+
+// searches n times unless we have a duplicate
+void search_part(int n, unsigned i, int *position, int *direction, map<int, unsigned> &tree){
+
+   for (int k=1; k<=n; k++){
+
+   		// send to new position and note direction
+            
+        // left 
+        if (i < tree[position[0]]){ position[0] = 2 * position[0] + 1; direction[0]=direction[1]; direction[1]=-1;}
+
+        // right
+        else if (i > tree[position[0]]){ position[0] = 2 * position[0] + 2; direction[0]=direction[1]; direction[1]=1;}
+
+        // duplicate, set position to -1, leave direction unchanged and exit
+        else {position[0] = -1; break;}
+        
+    }
 }
 
 // insert the unsigned at given position in the tree, check for imbalance, if yes restructure the tree correctly
@@ -202,7 +222,7 @@ void insert(unsigned i, int *position, int *direction, map<int, unsigned> &tree)
 int main(){
 
     // test sequential functions of the program on a custom array of unsigned integers
-    unsigned testarray[15];
+    unsigned testarray[16];
 
     testarray[0] = 4;
     testarray[1] = 8;
@@ -219,13 +239,7 @@ int main(){
     testarray[12] = 13;
     testarray[13] = 6;
     testarray[14] = 0;
-
-
-    for (int i = 0; i<15; i++){
-
-        cout << testarray[i] << "   ";
-    }
-    cout << endl;
+    testarray[15] = 9;
     
     // create tree
 
@@ -233,32 +247,68 @@ int main(){
 
     // set first entry
 
-    int pos[1] = {0};
-    int dir[2] = {0};
+    int pos_initial[1] = {0};
+    int dir_initial[2] = {0};
 
-    insert(testarray[0], pos, dir, avl);
+    insert(testarray[0], pos_initial, dir_initial, avl);
     // go through other elements
 
-    for (int i=1; i<15; i++){
+    for (int i=1; i<9; i++){
 
-        cout << testarray[i] << endl;
-
-        
-        pos[0] = 0;
-        dir[0] = 0;
-        dir[1] = 0;
-
-        search_full(testarray[i], pos, dir, avl);
-        //cout << pos[0] << endl;
-        //cout << dir[0] << dir[1] << endl;
-        //cout << pos[0]/2 + 1 << " " << avl.count(pos[0]/2 + 1) << endl;
-        if (pos[0] != -1){insert(testarray[i], pos, dir, avl);}
-        for (const auto& elem : avl){cout << elem.first << " ";}
-        cout << endl;
-        for (const auto& elem : avl){cout << elem.second << " ";}
-        cout << endl;
+        pos_initial[0] = 0;
+        dir_initial[0] = 0;
+        dir_initial[1] = 0;
+		
+        search_full(testarray[i], pos_initial, dir_initial, avl);
+       
+        if (pos_initial[0] != -1){insert(testarray[i], pos_initial, dir_initial, avl);}
+      
         
     }
+
+
+	int pos[7] = {0};
+    int dir[7 * 2] = {0};
+
+	// parallel region search in parallel, then insert
+	
+	omp_set_dynamic(0);     	// Explicitly disable dynamic teams
+	omp_set_num_threads(2);
+
+	#pragma omp parallel for shared(pos, dir, testarray, avl) schedule(static)
+
+	// go to the correct positions in the correct level
+
+	for (int i=9; i<16; i++){
+
+
+		int *p = pos + i - 9;		
+		int *d = dir + i - 9;
+
+		search_part(1, testarray[i], p, d, avl);
+
+	}
+
+
+	#pragma omp parallel shared(pos, dir, testarray, avl) 
+
+	
+	for (int j=0; j<7; j++){
+		
+		//cout << j << endl;
+		int *p = pos + j;		
+		int *d = dir + 2 * j;
+		if (pos[j] != -1 && pos[j] - 1 == omp_get_thread_num()){search_full(testarray[j + 9], p, d, avl); if( pos[j] != -1){ insert(testarray[j + 9], p, d, avl);}}
+
+	}
+
+
+	cout << endl;
+	
+	for (const auto& elem : avl){cout << elem.first << " ";}
+    cout << endl;
+    for (const auto& elem : avl){cout << elem.second << " ";}
+    cout << endl; 
 
 
   
