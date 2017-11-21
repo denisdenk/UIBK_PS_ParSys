@@ -307,7 +307,7 @@ int main(){
 		cout << j << endl;
 		int *p = pos + j;		
 		int *d = dir + 2 * j;
-		if (pos[j] != -1 && pos[j] - level_coordinate(level) == omp_get_thread_num()){search_full(testarray[j + seq_steps], p, d, avl); insert(testarray[j + seq_steps], p, d, avl);}
+		if (pos[j] != -1 && pos[j] - level_coordinate(level) == omp_get_thread_num()){search_full(testarray[j + seq_steps], p, d, avl); if( pos[j] != -1){ insert(testarray[j + seq_steps], p, d, avl);}}
 
 	}
 
