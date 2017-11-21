@@ -62,6 +62,8 @@ double CalculatingPi() {
         for (int i = 0; i < thread; i++) {
             counter += InsideCircle(part);
         }
+
+
         const double p = 4.0 * counter / n;
 
         cout << "Calculated Pi: " << p << endl;

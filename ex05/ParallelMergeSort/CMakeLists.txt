@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 17)
 set(SOURCE_FILES main.cpp main.h MerseSort.cpp)
 add_executable(ParallelMergeSort ${SOURCE_FILES})
 
-set (CMAKE_CXX_FLAGS "-fopenmp")
+set (CMAKE_CXX_FLAGS "-fopenmp -O3")
+#set (CMAKE_CXX_FLAGS "-O3")

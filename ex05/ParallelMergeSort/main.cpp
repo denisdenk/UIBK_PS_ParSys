@@ -18,8 +18,8 @@ int main(int argc, char** argv) {
         A[i] = dist.sample();
     }
 
+    cout << "Array size: " << num << endl;
     {
-        cout << "Array size: " << num << endl;
         ChronoTimer t("Multiplication");
         mergeSort(A, 0, num-1);
     }
@@ -27,3 +27,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
