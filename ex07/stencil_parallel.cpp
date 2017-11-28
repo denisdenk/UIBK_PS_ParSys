@@ -51,7 +51,7 @@ void update_propagation(double *array1, double *array2, int *indices, int dimens
 
 }
 
-void update_stationary(double *array1, double *array2, int *indices, int dimension, int size, double diff){
+void update_stationary(double *array1, double *array2, int *indices, int dimension, int size){
 
   // loop through all indices in the bulk and update the first array based on the values in the second
 
@@ -62,7 +62,7 @@ void update_stationary(double *array1, double *array2, int *indices, int dimensi
 
     if (dimension == 1){
 
-      array1[indices[i]] =  (1./(2. * diff)) * (array2[indices[i] + 1] + array2[indices[i] - 1]);
+      array1[indices[i]] =  (1./(2.)) * (array2[indices[i] + 1] + array2[indices[i] - 1]);
 
     }
 
@@ -70,7 +70,7 @@ void update_stationary(double *array1, double *array2, int *indices, int dimensi
 
     else if (dimension == 2){
 
-      array1[indices[i]] = (1./(4. * diff))  * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size]);
+      array1[indices[i]] = (1./(4.))  * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size]);
 
     }
 
@@ -78,18 +78,18 @@ void update_stationary(double *array1, double *array2, int *indices, int dimensi
 
     else {
 
-      array1[indices[i]] = (1./(6. * diff)) * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size] + array2[indices[i] + size * size] + array2[indices[i] - size * size]);
+      array1[indices[i]] = (1./(6.)) * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size] + array2[indices[i] + size * size] + array2[indices[i] - size * size]);
 
     }
   }
 
 }
 
-void parallel_update_stationary(double *array1, double *array2, int *indices, int dimension, int size, double diff){
+void parallel_update_stationary(double *array1, double *array2, int *indices, int dimension, int size){
 
   // loop through all indices in the bulk and update the first array based on the values in the second
 
-  #pragma omp parallel for shared(array1, array2, indices, dimension, size, diff)
+  #pragma omp parallel for shared(array1, array2, indices, dimension, size)
 
   for (int i = 0; i < raise(size - 2, dimension); i++){
 
@@ -98,7 +98,7 @@ void parallel_update_stationary(double *array1, double *array2, int *indices, in
 
     if (dimension == 1){
 
-      array1[indices[i]] =  (1./(2. * diff)) * (array2[indices[i] + 1] + array2[indices[i] - 1]);
+      array1[indices[i]] =  (1./(2.)) * (array2[indices[i] + 1] + array2[indices[i] - 1]);
 
     }
 
@@ -106,7 +106,7 @@ void parallel_update_stationary(double *array1, double *array2, int *indices, in
 
     else if (dimension == 2){
 
-      array1[indices[i]] = (1./(4. * diff))  * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size]);
+      array1[indices[i]] = (1./(4.))  * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size]);
 
     }
 
@@ -114,7 +114,7 @@ void parallel_update_stationary(double *array1, double *array2, int *indices, in
 
     else {
 
-      array1[indices[i]] = (1./(6. * diff)) * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size] + array2[indices[i] + size * size] + array2[indices[i] - size * size]);
+      array1[indices[i]] = (1./(6.)) * (array2[indices[i] + 1] + array2[indices[i] - 1] + array2[indices[i] + size] + array2[indices[i] - size] + array2[indices[i] + size * size] + array2[indices[i] - size * size]);
 
     }
   }
@@ -318,7 +318,7 @@ int main(){
 
                 // update the original grid
 
-                parallel_update_stationary(grid, gridcopy, index, dim, N, D);
+                parallel_update_stationary(grid, gridcopy, index, dim, N);
 
                 // get total change
 
