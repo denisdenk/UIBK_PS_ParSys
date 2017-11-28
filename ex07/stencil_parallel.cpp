@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include "chrono.h"
 
 
 using namespace std;
@@ -301,30 +302,37 @@ int main(){
 
              int count = 0;
              double change = 1.0;
-             while ((change * change) > (eps * eps)) {
 
-               // create copy of grid
+        {
+            ChronoTimer t("Parallel Stencil");
+            while ((change * change) > (eps * eps)) {
 
-               double gridcopy[raise(N, dim)] = {0.};
-               for (int i = 0; i < raise(N, dim); i++){
+                // create copy of grid
 
-                 gridcopy[i] = grid[i];
+                double gridcopy[raise(N, dim)] = {0.};
+                for (int i = 0; i < raise(N, dim); i++){
 
-               }
+                    gridcopy[i] = grid[i];
 
-               // update the original grid
+                }
 
-               parallel_update_stationary(grid, gridcopy, index, dim, N, D);
+                // update the original grid
 
-               // get total change
+                parallel_update_stationary(grid, gridcopy, index, dim, N, D);
 
-               change = parallel_total_change(grid, gridcopy, raise(N, dim));
+                // get total change
 
-               // count steps
+                change = parallel_total_change(grid, gridcopy, raise(N, dim));
 
-               count++;
+                // count steps
 
-             }
+                count++;
+
+            }
+
+        }
+
+
 
 
             cout << "delta h = " << change << endl;
