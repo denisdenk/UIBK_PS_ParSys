@@ -13,6 +13,29 @@ int raise(int n, int p){
         else {return n * raise(n, p - 1);}
 
 }
+
+void Test(double *grid, int *index, double eps)
+{
+    int counter = 0;
+
+    for(int i = 0; i < sizeof(index)/sizeof(int); i++)
+    {
+        if (grid[i] * grid[i] <= eps * eps)
+        {
+            counter++;
+        }
+    }
+
+    if (counter == sizeof(index)/sizeof(int))
+    {
+        cout << "Test OK!" << endl;
+    }
+    else
+    {
+        cout << "Test FAILED!" << endl;
+    }
+}
+
 // updates for heat propagation and stationary heat equation
 // update the array with values, a copy of the array is needed and also the bulk indices and the dimension
 // as well as the linear size of the grid
@@ -144,8 +167,8 @@ double parallel_total_change(double *array1, double *array2, int size){
 
 int main(){
 
-    int dim = 2;        // dimension of grid, must be 1, 2 , 3
-    int N = 200;         // lenght odf single dimension
+    int dim = 3;        // dimension of grid, must be 1, 2 , 3
+    int N = 10;         // lenght odf single dimension
     double D = 1.;     // effective diffusion constant
     double eps = 0.00001;  // precison criteria
     double amp = 3.0;         // amplitude of initial distribuntion
@@ -156,8 +179,8 @@ int main(){
     bc[1] = 0.;
     bc[2] = 0.;
     bc[3] = 0.;
-    // bc[4] = 9.;
-    // bc[5] = -5.;
+    //bc[4] = 9.;
+    //bc[5] = -5.;
 
     default_random_engine generator;
     generator.seed(seed);
@@ -334,6 +357,7 @@ int main(){
 
             cout << "delta h = " << change << endl;
             cout << count << "  steps" << endl;
+        Test(grid, index, eps);
 
 
     //         for (int i = 0; i < raise(N, dim); i++){
