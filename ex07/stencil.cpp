@@ -305,7 +305,7 @@ int main(){
 
 
         {
-            ChronoTimer t("Parallel Stencil");
+            ChronoTimer t("Stencil");
             while ((change * change) > (eps * eps)) {
 
                 // create copy of grid
