@@ -1,0 +1,21 @@
+# started on Tue Oct 24 13:37:53 2017
+
+
+ Performance counter stats for './mmul 450' (100 runs):
+
+       1795.450297      task-clock (msec)         #    0.999 CPUs utilized            ( +-  0.23% )
+       1795.451158      cpu-clock (msec)          # 1000.000 M/sec                    ( +-  0.23% )
+     6,414,593,969      cycles                    #    3.573 GHz                      ( +-  0.07% )  (27.05%)
+    11,064,938,653      instructions              #    1.72  insns per cycle          ( +-  0.06% )  (36.23%)
+     1,278,013,457      branches                  #  711.807 M/sec                    ( +-  0.05% )  (36.54%)
+           239,719      branch-misses             #    0.02% of all branches          ( +-  0.20% )  (45.76%)
+           824,779      cache-references          #    0.459 M/sec                    ( +-  1.58% )  (45.84%)
+            52,855      cache-misses              #    6.408 % of all cache refs      ( +-  5.08% )  (45.86%)
+     4,869,378,637      L1-dcache-loads           # 2712.065 M/sec                    ( +-  0.04% )  (36.12%)
+        11,829,634      L1-dcache-load-misses     #    0.24% of all L1-dcache hits    ( +-  0.11% )  (35.63%)
+        13,538,459      L1-dcache-prefetch-misses #    7.540 M/sec                    ( +-  0.11% )  (18.17%)
+     2,834,651,665      L1-dcache-stores          # 1578.797 M/sec                    ( +-  0.07% )  (18.18%)
+           126,278      L1-dcache-store-misses    #    0.070 M/sec                    ( +-  3.02% )  (18.13%)
+
+       1.797354833 seconds time elapsed                                          ( +-  0.24% )
+

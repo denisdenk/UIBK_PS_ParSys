@@ -1,0 +1,21 @@
+# started on Tue Oct 24 14:01:28 2017
+
+
+ Performance counter stats for './mmul 100' (100 runs):
+
+         13.759404      task-clock (msec)         #    0.974 CPUs utilized            ( +-  2.41% )
+         13.759385      cpu-clock (msec)          #  999.999 M/sec                    ( +-  2.41% )
+         5,521,363      cycles                    #    0.401 GHz                      ( +-  6.52% )
+        28,204,910      instructions              #    5.11  insns per cycle          ( +-  3.09% )
+         5,907,953      branches                  #  429.376 M/sec                    ( +-  2.33% )
+            25,295      branch-misses             #    0.43% of all branches          ( +-  0.79% )
+            36,548      cache-references          #    2.656 M/sec                    ( +-  0.56% )
+             1,175      cache-misses              #    3.215 % of all cache refs      ( +- 16.54% )  (86.48%)
+     <not counted>      L1-dcache-loads            (3.37%)
+     <not counted>      L1-dcache-load-misses      (0.00%)
+     <not counted>      L1-dcache-prefetch-misses  (0.00%)
+     <not counted>      L1-dcache-stores           (0.00%)
+     <not counted>      L1-dcache-store-misses     (0.00%)
+
+       0.014125884 seconds time elapsed                                          ( +-  2.39% )
+

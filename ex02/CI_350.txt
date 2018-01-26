@@ -1,0 +1,21 @@
+# started on Tue Oct 24 13:34:10 2017
+
+
+ Performance counter stats for './mmul 350' (100 runs):
+
+        858.815074      task-clock (msec)         #    0.999 CPUs utilized            ( +-  0.32% )
+        858.814962      cpu-clock (msec)          # 1000.000 M/sec                    ( +-  0.32% )
+     2,882,319,325      cycles                    #    3.356 GHz                      ( +-  0.16% )  (26.58%)
+     5,068,032,926      instructions              #    1.76  insns per cycle          ( +-  0.13% )  (35.86%)
+       598,815,025      branches                  #  697.257 M/sec                    ( +-  0.11% )  (36.66%)
+           155,378      branch-misses             #    0.03% of all branches          ( +-  0.22% )  (46.34%)
+           439,081      cache-references          #    0.511 M/sec                    ( +-  0.99% )  (46.56%)
+            21,215      cache-misses              #    4.832 % of all cache refs      ( +-  9.01% )  (46.49%)
+     2,173,533,728      L1-dcache-loads           # 2530.852 M/sec                    ( +-  0.06% )  (36.01%)
+         5,819,521      L1-dcache-load-misses     #    0.27% of all L1-dcache hits    ( +-  0.16% )  (34.88%)
+         5,563,788      L1-dcache-prefetch-misses #    6.478 M/sec                    ( +-  0.20% )  (18.19%)
+     1,335,547,152      L1-dcache-stores          # 1555.104 M/sec                    ( +-  0.14% )  (18.04%)
+            66,886      L1-dcache-store-misses    #    0.078 M/sec                    ( +-  3.00% )  (17.80%)
+
+       0.859475591 seconds time elapsed                                          ( +-  0.32% )
+

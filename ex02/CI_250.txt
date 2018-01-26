@@ -1,0 +1,21 @@
+# started on Tue Oct 24 13:36:34 2017
+
+
+ Performance counter stats for './mmul 250' (100 runs):
+
+        378.662363      task-clock (msec)         #    0.998 CPUs utilized            ( +-  0.55% )
+        378.662217      cpu-clock (msec)          # 1000.000 M/sec                    ( +-  0.55% )
+     1,044,763,729      cycles                    #    2.759 GHz                      ( +-  0.37% )  (26.06%)
+     1,823,372,725      instructions              #    1.75  insns per cycle          ( +-  0.30% )  (35.59%)
+       214,453,456      branches                  #  566.345 M/sec                    ( +-  0.23% )  (37.17%)
+            94,400      branch-misses             #    0.04% of all branches          ( +-  0.38% )  (47.11%)
+           224,003      cache-references          #    0.592 M/sec                    ( +-  0.99% )  (47.66%)
+             6,483      cache-misses              #    2.894 % of all cache refs      ( +- 13.73% )  (47.86%)
+       800,567,462      L1-dcache-loads           # 2114.199 M/sec                    ( +-  0.15% )  (35.53%)
+         2,201,420      L1-dcache-load-misses     #    0.27% of all L1-dcache hits    ( +-  0.29% )  (32.96%)
+         2,039,503      L1-dcache-prefetch-misses #    5.386 M/sec                    ( +-  0.34% )  (18.12%)
+       486,295,114      L1-dcache-stores          # 1284.245 M/sec                    ( +-  0.37% )  (17.99%)
+            33,790      L1-dcache-store-misses    #    0.089 M/sec                    ( +-  3.87% )  (17.64%)
+
+       0.379380529 seconds time elapsed                                          ( +-  0.55% )
+
